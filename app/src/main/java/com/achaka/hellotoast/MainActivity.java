@@ -3,12 +3,15 @@ package com.achaka.hellotoast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String COUNT_EXTRA = "com.achaka.hellotoast.extra.count";
 
     private int mCount = 0;
     private TextView mShowCount;
@@ -21,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showToast(View view) {
-        Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
-        toast.show();
+        Intent intent = new Intent(this, HelloActivity.class);
+        intent.putExtra(COUNT_EXTRA, mCount);
+        startActivity(intent);
     }
 
     @SuppressLint("SetTextI18n")
